@@ -13,6 +13,8 @@ public class ListaDeProductos extends JPanel {
     public ListaDeProductos(){
         listaActual = new TreeMap<String, Integer>();
         areaDeTexto = new JTextArea("");
+        areaDeTexto.setEditable(false);
+        this.add(areaDeTexto);
     }
 
     public void insertaProducto(String nombre, int precio) {
@@ -43,6 +45,13 @@ public class ListaDeProductos extends JPanel {
     }
 
     /**
+     * Método que actualiza el área de texto con los datos actuales de la lista de Productos.
+     */
+    public void actualizaLista(){
+        this.areaDeTexto.setText(imprimeLista());
+    }
+
+    /**
      * Método para realizar pruebas de la clase. Será borrado posteriormente.
      * @param args
      */
@@ -51,6 +60,5 @@ public class ListaDeProductos extends JPanel {
         miLista.insertaProducto("Patata", 10);
         miLista.insertaProducto("Manzana", 75);
         miLista.insertaProducto("Patata", 2);
-        System.out.println(miLista.imprimeLista());
     }
 }

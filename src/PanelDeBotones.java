@@ -14,10 +14,10 @@ public class PanelDeBotones extends JPanel{
     /**
      * Método constructor que crea la lista de botones correspondiente y los configura en el panel.
      */
-    public PanelDeBotones(String archivo){
+    public PanelDeBotones(String archivo, ListaDeProductos lista){
         botones = new ArrayList<BotonDeProducto>();
         panel = new JPanel();
-        crearBotones(archivo);
+        crearBotones(archivo, lista);
         configurarPanel();
     }
 
@@ -40,7 +40,7 @@ public class PanelDeBotones extends JPanel{
      * Método encargado de generar todos los botones que habrá en el panel mediante la lectura de un
      * fichero de texto ubicado en los recursos.
      */
-    public void crearBotones(String archivo){
+    public void crearBotones(String archivo, ListaDeProductos lista){
         //TODO: Cambiar el catch por el error correcto.
         try {
             String rutaDeArchivo = "./datos/"+archivo;
@@ -49,7 +49,12 @@ public class PanelDeBotones extends JPanel{
 
             for (String s: productos) {
                 String[] segmentos = s.split(":");
-                botones.add(new BotonDeProducto(segmentos[0], Double.parseDouble(segmentos[1])));
+                //TODO: Sacar el método del botón de esta parte.
+                BotonDeProducto botonAux = new BotonDeProducto(segmentos[0], Double.parseDouble(segmentos[1]));
+                botonAux.getBoton().addActionListener( e-> {
+                            ESAreaDeTexto.insertaProducto(botonAux.getNombre(), botonAux.getPrecio(), lista);
+                        });
+                botones.add(botonAux);
             }
         } catch (Exception e) {
             System.out.println("Ha habido un problema.");;
