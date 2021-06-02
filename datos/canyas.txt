@@ -1,0 +1,8 @@
+CañadePlástico:50
+CañaDeMadera:100
+CañadeCobre:200
+CañaDeHierro:300
+CañaDePlata:400
+CañaDeOro:500
+CañaDeCobalto:600
+CañaDeMitrilo:700

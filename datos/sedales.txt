@@ -1,0 +1,6 @@
+sango:40
+sango:1
+cutu:5
+cutu:90
+pachu:4
+pachu:12384

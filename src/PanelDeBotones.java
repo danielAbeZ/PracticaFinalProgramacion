@@ -7,17 +7,17 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PanelDeBotones {
+public class PanelDeBotones extends JPanel{
     private List<BotonDeProducto> botones;
     private JPanel panel;
 
     /**
      * Método constructor que crea la lista de botones correspondiente y los configura en el panel.
      */
-    public PanelDeBotones(){
+    public PanelDeBotones(String archivo){
         botones = new ArrayList<BotonDeProducto>();
         panel = new JPanel();
-        crearBotones();
+        crearBotones(archivo);
         configurarPanel();
     }
 
@@ -26,9 +26,9 @@ public class PanelDeBotones {
      */
     public void configurarPanel(){
         panel = new JPanel();
-        GridLayout gridL = new GridLayout();
-        gridL.setHgap(5);
-        gridL.setVgap(5);
+        GridLayout gridL = new GridLayout(botones.size()/2,0);
+        gridL.setHgap(10);
+        gridL.setVgap(10);
         panel.setLayout(gridL);
 
         for(BotonDeProducto b: botones){
@@ -40,10 +40,12 @@ public class PanelDeBotones {
      * Método encargado de generar todos los botones que habrá en el panel mediante la lectura de un
      * fichero de texto ubicado en los recursos.
      */
-    public void crearBotones(){
+    public void crearBotones(String archivo){
         //TODO: Cambiar el catch por el error correcto.
         try {
-            List<String> productos = Files.readAllLines(Paths.get("./datos/productos.txt"), Charset.defaultCharset());
+            String rutaDeArchivo = "./datos/"+archivo;
+            System.out.println(rutaDeArchivo);
+            List<String> productos = Files.readAllLines(Paths.get(rutaDeArchivo), Charset.defaultCharset());
 
             for (String s: productos) {
                 String[] segmentos = s.split(":");
