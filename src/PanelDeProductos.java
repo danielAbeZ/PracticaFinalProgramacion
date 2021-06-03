@@ -8,13 +8,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PanelDeBotones extends JPanel{
+public class PanelDeProductos extends JPanel{
     private List<BotonDeProducto> botones;
 
     /**
      * Método constructor que crea la lista de botones correspondiente y los configura en el panel.
      */
-    public PanelDeBotones(String archivo, ListaDeProductos lista){
+    public PanelDeProductos(String archivo, ListaDeProductos lista){
         botones = new ArrayList<BotonDeProducto>();
         crearBotones(archivo, lista);
         configurarPanel();

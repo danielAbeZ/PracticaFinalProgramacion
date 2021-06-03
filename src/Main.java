@@ -5,7 +5,7 @@ public class Main {
         JFrame programaPrincipal = new JFrame("TPV");
         programaPrincipal.add(new Programa());
 
-        //frame.setSize(600,600);
+        //programaPrincipal.setSize(600,600);
         programaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         programaPrincipal.pack();
         programaPrincipal.setVisible(true);
