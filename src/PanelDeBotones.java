@@ -32,7 +32,7 @@ public class PanelDeBotones extends JPanel{
         panel.setLayout(gridL);
 
         for(BotonDeProducto b: botones){
-            panel.add(b.getBoton());
+            panel.add(b);
         }
     }
 
@@ -51,7 +51,7 @@ public class PanelDeBotones extends JPanel{
             for (String s: productos) {
                 String[] segmentos = s.split(":");
                 BotonDeProducto botonAux = new BotonDeProducto(segmentos[0], Double.parseDouble(segmentos[1]));
-                botonAux.getBoton().addActionListener( e-> {
+                botonAux.addActionListener( e-> {
                             ESAreaDeTexto.insertaProducto(botonAux.getNombre(), botonAux.getPrecio(), lista);
                         });
                 botones.add(botonAux);

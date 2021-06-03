@@ -14,6 +14,7 @@ public class BotonDeProducto extends JButton{
     public BotonDeProducto(String nombre, double precio){
         this.nombre = nombre;
         this.precio = precio;
+        this.setText(nombre);
     }
 
     /**
