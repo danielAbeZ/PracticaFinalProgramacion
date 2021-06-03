@@ -25,11 +25,11 @@ public class Programa extends JPanel{
         this.add(listaProductos, constraints);
 
         //Configuración del panel de los botones que hacne referencia a los productos.
-        PanelDeBotones panelBotones = new PanelDeBotones("canyas.txt", listaProductos);
+        PanelDeProductos panelProductos = new PanelDeProductos("canyas.txt", listaProductos);
         constraints.gridx = 0;
         constraints.gridy = 0;
-        panelBotones.setBorder(borde);
-        this.add(panelBotones,constraints);
+        panelProductos.setBorder(borde);
+        this.add(panelProductos,constraints);
 
         //Configuración del panel con los botones para cambiar el tipo de productos mostrados.
         JPanel tiposDeProductos = new JPanel();
