@@ -1,10 +1,10 @@
 import javax.swing.*;
+import java.awt.*;
 
-public class BotonDeProducto {
+public class BotonDeProducto extends JButton{
     private String nombre;
     private double precio;
-    private String imagen;
-    private JButton boton;
+    private ImageIcon imagen;
 
     /**
      * Constructor base de la clase.
@@ -14,7 +14,6 @@ public class BotonDeProducto {
     public BotonDeProducto(String nombre, double precio){
         this.nombre = nombre;
         this.precio = precio;
-        this.boton = new JButton(nombre);
     }
 
     /**
@@ -25,7 +24,7 @@ public class BotonDeProducto {
      */
     public BotonDeProducto(String nombre, double precio, String imagen){
         this(nombre, precio);
-        this.imagen = imagen;
+        this.imagen = new ImageIcon(imagen);
     }
 
     /**
@@ -46,9 +45,9 @@ public class BotonDeProducto {
 
     /**
      * Método para obtener la imagen del botón que representa un producto.
-     * @return imagen: dirección de la ubicación de la imagen en el sistema de archivos
+     * @return imagen: un ImageIcon que será el que se vea en la representación del botón
      */
-    public String getImagen() {
+    public ImageIcon getImagen() {
         return imagen;
     }
 
@@ -57,14 +56,6 @@ public class BotonDeProducto {
      * @param imagen: dirección de la ubicación de la imagen nueva
      */
     public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    /**
-     * Método para obtener el botón de un producto.
-     * @return boton: botón que representa un producto
-     */
-    public JButton getBoton(){
-        return boton;
+        this.imagen = new ImageIcon(imagen);
     }
 }
