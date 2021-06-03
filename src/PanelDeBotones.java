@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -9,14 +10,12 @@ import java.util.List;
 
 public class PanelDeBotones extends JPanel{
     private List<BotonDeProducto> botones;
-    private JPanel panel;
 
     /**
      * Método constructor que crea la lista de botones correspondiente y los configura en el panel.
      */
     public PanelDeBotones(String archivo, ListaDeProductos lista){
         botones = new ArrayList<BotonDeProducto>();
-        panel = new JPanel();
         crearBotones(archivo, lista);
         configurarPanel();
     }
@@ -25,14 +24,13 @@ public class PanelDeBotones extends JPanel{
      * Método que se encarga de configurar el panel.
      */
     public void configurarPanel(){
-        panel = new JPanel();
         GridLayout gridL = new GridLayout(botones.size()/2,0);
         gridL.setHgap(10);
         gridL.setVgap(10);
-        panel.setLayout(gridL);
+        this.setLayout(gridL);
 
         for(BotonDeProducto b: botones){
-            panel.add(b);
+            this.add(b);
         }
     }
 
@@ -59,10 +57,6 @@ public class PanelDeBotones extends JPanel{
         } catch (Exception e) {
             System.out.println("Ha habido un problema.");;
         }
-    }
-
-    public JPanel getPanel(){
-        return panel;
     }
 
 }
