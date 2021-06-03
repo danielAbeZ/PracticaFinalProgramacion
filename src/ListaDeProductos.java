@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,6 +15,7 @@ public class ListaDeProductos extends JPanel {
         listaActual = new TreeMap<String, Double>();
         areaDeTexto = new JTextArea("");
         areaDeTexto.setEditable(false);
+        this.setLayout(new BorderLayout());
         this.add(areaDeTexto);
     }
 
