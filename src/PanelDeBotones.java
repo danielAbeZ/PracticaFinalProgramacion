@@ -40,16 +40,16 @@ public class PanelDeBotones extends JPanel{
      * Método encargado de generar todos los botones que habrá en el panel mediante la lectura de un
      * fichero de texto ubicado en los recursos.
      */
-    public void crearBotones(String archivo, ListaDeProductos lista){
+    private void crearBotones(String archivo, ListaDeProductos lista){
         //TODO: Cambiar el catch por el error correcto.
         try {
             String rutaDeArchivo = "./datos/"+archivo;
             System.out.println(rutaDeArchivo);
             List<String> productos = Files.readAllLines(Paths.get(rutaDeArchivo), Charset.defaultCharset());
 
+            //Para cada una de las líneas, que será un producto, creamos un botón.
             for (String s: productos) {
                 String[] segmentos = s.split(":");
-                //TODO: Sacar el método del botón de esta parte.
                 BotonDeProducto botonAux = new BotonDeProducto(segmentos[0], Double.parseDouble(segmentos[1]));
                 botonAux.getBoton().addActionListener( e-> {
                             ESAreaDeTexto.insertaProducto(botonAux.getNombre(), botonAux.getPrecio(), lista);
