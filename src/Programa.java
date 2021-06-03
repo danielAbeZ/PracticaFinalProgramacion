@@ -4,6 +4,9 @@ import java.awt.*;
 
 public class Programa extends JPanel{
 
+    PanelDeProductos panelActivo;
+    boolean modoAnyadir = true;
+
     public Programa() {
         configurarPanel();
     }
@@ -28,6 +31,8 @@ public class Programa extends JPanel{
         panelProductosCanyas.setBorder(borde);
         this.add(panelProductosCanyas,constraints);
 
+        panelActivo = panelProductosCanyas;
+
         //Configuración del panel con los productos de tipo "Sedales".
         PanelDeProductos panelProductosSedales = new PanelDeProductos("sedales.txt", listaProductos);
         panelProductosSedales.setBorder(borde);
@@ -47,9 +52,24 @@ public class Programa extends JPanel{
         JPanel opcionProductos = new JPanel();
         JButton botonAnyadir = new JButton("Añadir");
         JButton botonQuitar = new JButton("Quitar");
+        botonAnyadir.setEnabled(false);
         opcionProductos.add(botonAnyadir);
         opcionProductos.add(botonQuitar);
         opcionProductos.setBorder(borde);
+
+        botonAnyadir.addActionListener( e-> {
+            ESPanelDeProductos.activarBotones(panelActivo.getBotones());
+            botonAnyadir.setEnabled(false);
+            botonQuitar.setEnabled(true);
+            modoAnyadir = true;
+        });
+
+        botonQuitar.addActionListener( e ->{
+            ESPanelDeProductos.obtenerBotonesDeBorrado(panelActivo, listaProductos.imprimeLista());
+            botonAnyadir.setEnabled(true);
+            botonQuitar.setEnabled(false);
+            modoAnyadir = false;
+        });
 
         constraints = creaConstraints(0,2,2,1, insets, GridBagConstraints.NONE);
         this.add(opcionProductos, constraints);
@@ -60,6 +80,7 @@ public class Programa extends JPanel{
         JButton botonCanya = new JButton("Cañas");
         JButton botonSedal = new JButton("Sedales");
         JButton botonCebo = new JButton("Cebos");
+        botonCanya.setEnabled(false);
         tiposDeProductos.add(botonCanya);
         tiposDeProductos.add(botonSedal);
         tiposDeProductos.add(botonCebo);
@@ -69,12 +90,35 @@ public class Programa extends JPanel{
             panelProductosCanyas.setVisible(true);
             panelProductosSedales.setVisible(false);
             //panelProductosCebos.setVisible(false);
+
+            botonCanya.setEnabled(false);
+            botonSedal.setEnabled(true);
+            botonCebo.setEnabled(true);
+
+            panelActivo = panelProductosCanyas;
+            ESPanelDeProductos.activarBotones(panelActivo.getBotones());
+            if(!modoAnyadir){
+                ESPanelDeProductos.obtenerBotonesDeBorrado(panelActivo, listaProductos.imprimeLista());
+            }
         });
 
         botonSedal.addActionListener( e -> {
             panelProductosCanyas.setVisible(false);
             panelProductosSedales.setVisible(true);
             //panelProductosCebos.setVisible(false);
+
+            panelActivo = panelProductosSedales;
+
+            botonCanya.setEnabled(true);
+            botonSedal.setEnabled(false);
+            botonCebo.setEnabled(true);
+
+            panelActivo = panelProductosSedales;
+            ESPanelDeProductos.activarBotones(panelActivo.getBotones());
+            if(!modoAnyadir){
+                ESPanelDeProductos.obtenerBotonesDeBorrado(panelActivo, listaProductos.imprimeLista());
+            }
+
         });
 
         /*

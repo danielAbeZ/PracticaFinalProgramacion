@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PanelDeProductos extends JPanel{
-    private List<BotonDeProducto> botones;
+    private ArrayList<BotonDeProducto> botones;
 
     /**
      * Método constructor que crea la lista de botones correspondiente y los configura en el panel.
@@ -55,6 +56,10 @@ public class PanelDeProductos extends JPanel{
         } catch (Exception e) {
             System.out.println("Ha habido un problema.");;
         }
+    }
+
+    public ArrayList<BotonDeProducto> getBotones(){
+        return botones;
     }
 
 }
