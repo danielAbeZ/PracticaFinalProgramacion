@@ -21,7 +21,7 @@ public class PanelDeProductos extends JPanel{
     /**
      * Método que se encarga de configurar el panel.
      */
-    public void configurarPanel(){
+    private void configurarPanel(){
         GridLayout gridL = new GridLayout(botones.size()/2,0);
         gridL.setHgap(10);
         gridL.setVgap(10);

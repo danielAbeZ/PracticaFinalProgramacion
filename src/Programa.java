@@ -9,29 +9,53 @@ public class Programa extends JPanel{
     }
 
     private void configurarPanel(){
-        //Configuramos el layout del Panel, así como la creación de las constraints para permitir un mejor visualizado
-        //de los componentes.
+        //Configuramos el layout del Panel, así como la creación de las constraints y el borde que tendrán
+        //los elementos.
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(5,5,5,5);
+        Insets insets = new Insets(5,5,5,5);
         Border borde = BorderFactory.createLineBorder(Color.lightGray);
 
         //Configuración del panel con el área de texto que muestra la lista actual de productos.
         ListaDeProductos listaProductos = new ListaDeProductos();
         listaProductos.setBorder(borde);
-
-        constraints.gridx = 1;
-        constraints.gridy = 0;
+        constraints = creaConstraints(2,0,2,3, insets, GridBagConstraints.BOTH);
         this.add(listaProductos, constraints);
 
-        //Configuración del panel de los botones que hacne referencia a los productos.
-        PanelDeProductos panelProductos = new PanelDeProductos("canyas.txt", listaProductos);
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        panelProductos.setBorder(borde);
-        this.add(panelProductos,constraints);
+        //Configuración del panel con los productos de tipo "Canyas".
+        PanelDeProductos panelProductosCanyas = new PanelDeProductos("canyas.txt", listaProductos);
+        constraints = creaConstraints(0,0,2,2, insets, GridBagConstraints.NONE);
+        panelProductosCanyas.setBorder(borde);
+        this.add(panelProductosCanyas,constraints);
+
+        //Configuración del panel con los productos de tipo "Sedales".
+        PanelDeProductos panelProductosSedales = new PanelDeProductos("sedales.txt", listaProductos);
+        panelProductosSedales.setBorder(borde);
+        panelProductosSedales.setVisible(false);
+        this.add(panelProductosSedales,constraints);
+
+        /*
+        //Configuración del panel con los productos de tipo "Cebos".
+        PanelDeProductos panelProductosCebos = new PanelDeProductos("cebos.txt", listaProductos);
+        panelProductosCebos.setBorder(borde);
+        panelProductosCebos.setVisible(false);
+        this.add(panelProductosCebos,constraints);
+         */
+
+        //Configuración del panel con los botones para añadir o quitar productos.
+        //TODO: Crear un método para crear y darle funcionalidad al panel.
+        JPanel opcionProductos = new JPanel();
+        JButton botonAnyadir = new JButton("Añadir");
+        JButton botonQuitar = new JButton("Quitar");
+        opcionProductos.add(botonAnyadir);
+        opcionProductos.add(botonQuitar);
+        opcionProductos.setBorder(borde);
+
+        constraints = creaConstraints(0,2,2,1, insets, GridBagConstraints.NONE);
+        this.add(opcionProductos, constraints);
 
         //Configuración del panel con los botones para cambiar el tipo de productos mostrados.
+        //TODO: Crear un método para crear y darle funcionalidad al panel.
         JPanel tiposDeProductos = new JPanel();
         JButton botonCanya = new JButton("Cañas");
         JButton botonSedal = new JButton("Sedales");
@@ -41,8 +65,58 @@ public class Programa extends JPanel{
         tiposDeProductos.add(botonCebo);
         tiposDeProductos.setBorder(borde);
 
-        constraints.gridx = 0;
-        constraints.gridy = 1;
+        botonCanya.addActionListener( e -> {
+            panelProductosCanyas.setVisible(true);
+            panelProductosSedales.setVisible(false);
+            //panelProductosCebos.setVisible(false);
+        });
+
+        botonSedal.addActionListener( e -> {
+            panelProductosCanyas.setVisible(false);
+            panelProductosSedales.setVisible(true);
+            //panelProductosCebos.setVisible(false);
+        });
+
+        /*
+        botonCebo.addActionListener( e -> {
+            panelProductosCanyas.setVisible(false);
+            panelProductosSedales.setVisible(false);
+            panelProductosCebos.setVisible(true);
+        });
+        */
+
+        constraints = creaConstraints(0,3,2,1, insets, GridBagConstraints.NONE);
         this.add(tiposDeProductos, constraints);
+
+        //Configuración del panel con las opciones adicicionales.
+        //TODO: Crear un método para crear y darle funcionalidad al panel.
+        JPanel opcionesAdicionales = new JPanel();
+        JButton botonMuestra = new JButton("Muestra ticket");
+        JButton botonImprime = new JButton("Imprime ticket");
+        opcionesAdicionales.add(botonMuestra);
+        opcionesAdicionales.add(botonImprime);
+        opcionesAdicionales.setBorder(borde);
+
+        constraints = creaConstraints(2,3,2,1, insets, GridBagConstraints.NONE);
+        this.add(opcionesAdicionales, constraints);
+    }
+
+    private GridBagConstraints creaConstraints(int posx, int posy, int ancho, int alto, Insets insets, int fill){
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = posx;
+        constraints.gridy = posy;
+        constraints.gridwidth = ancho;
+        constraints.gridheight = alto;
+        constraints.fill = fill;
+        constraints.insets = insets;
+
+        return constraints;
+    }
+
+    public GridBagConstraints creaConstraints(int posx, int posy, int ancho, int alto, Insets insets, int fill, int anchor){
+        GridBagConstraints constraints = creaConstraints(posx,posy,ancho,alto,insets,fill);
+        constraints.anchor = anchor;
+
+        return constraints;
     }
 }
