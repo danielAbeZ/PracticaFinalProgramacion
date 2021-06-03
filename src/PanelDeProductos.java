@@ -1,7 +1,5 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -50,7 +48,7 @@ public class PanelDeProductos extends JPanel{
                 String[] segmentos = s.split(":");
                 BotonDeProducto botonAux = new BotonDeProducto(segmentos[0], Double.parseDouble(segmentos[1]));
                 botonAux.addActionListener( e-> {
-                            ESAreaDeTexto.insertaProducto(botonAux.getNombre(), botonAux.getPrecio(), lista);
+                            ESListaDeProductos.insertaProducto(botonAux.getNombre(), botonAux.getPrecio(), lista);
                         });
                 botones.add(botonAux);
             }
