@@ -4,26 +4,26 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class ListaDeProductos extends JPanel {
-    private TreeMap<String, Integer> listaActual;
+    private TreeMap<String, Double> listaActual;
     private JTextArea areaDeTexto;
 
     /**
      * Método constructor de la clase. Inicializa las variables de la misma.
      */
     public ListaDeProductos(){
-        listaActual = new TreeMap<String, Integer>();
+        listaActual = new TreeMap<String, Double>();
         areaDeTexto = new JTextArea("");
         areaDeTexto.setEditable(false);
         this.add(areaDeTexto);
     }
 
-    public void insertaProducto(String nombre, int precio) {
+    public void insertaProducto(String nombre, double precio) {
 
         if(listaActual.get(nombre) == null){
             listaActual.put(nombre, precio);
         }
         else{
-            int precioProducto = listaActual.get(nombre);
+            double precioProducto = listaActual.get(nombre);
             precioProducto = precioProducto + precio;
             listaActual.put(nombre, precioProducto);
         }
@@ -37,7 +37,7 @@ public class ListaDeProductos extends JPanel {
     public String imprimeLista(){
         String salida = "";
 
-        for (Map.Entry<String, Integer> entrada : listaActual.entrySet()) {
+        for (Map.Entry<String, Double> entrada : listaActual.entrySet()) {
             salida = salida + entrada.getKey() + " - " + entrada.getValue() + "\r\n";
         }
 
