@@ -3,7 +3,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ESPanelDeProductos {
-    public static void obtenerBotonesDeBorrado(PanelDeProductos panel, String lista) {
+    public static void obtenerBotonesDeBorrado(PanelDeProductos panel, ListaDeProductos lista) {
         ArrayList<String> productos = ESListaDeProductos.obtenerNombresEnLista(lista);
         ArrayList<BotonDeProducto> botones = panel.getBotones();
         ArrayList<BotonDeProducto> botonesParaActivar = ESPanelDeProductos.obtenerBotonesDeProductosEnLista(botones, productos);
