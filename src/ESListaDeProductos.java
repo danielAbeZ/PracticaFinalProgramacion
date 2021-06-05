@@ -15,9 +15,31 @@ public class ESListaDeProductos {
         lista.actualizaLista();
     }
 
+    public static void borraProducto(String nombre, double precio, ListaDeProductos lista){
+        lista.borraProducto(nombre, precio);
+        lista.actualizaLista();
+
+    }
+
+    /**
+     * Método que obtiene el precio total de todos los productos que hayan en una ListaDeProductos.
+     * @param lista: ListaDeProductos de la que se quiere obtener el precio total.
+     * @return precioTotal: suma del precio de todos los productos de la ListaDeProductos.
+     */
+    public static double obtenerTotal(ListaDeProductos lista){
+        double precioTotal = 0.0;
+
+        for(Map.Entry<String, Double> producto: lista.getProductos().entrySet()){
+            precioTotal = precioTotal + producto.getValue();
+        }
+
+        return precioTotal;
+    }
+
     /**
      * Método que lee todos los productos que se encuentran actualmente en una ListaDeProductos
-     * y que los añade a una cadena. Esa cadena será devuelta al final de la ejecución del mismo.
+     * y que los añade a una cadena, junto a la suma de los precios de todos ellos. Esa cadena
+     * será devuelta al final de la ejecución del mismo.
      * @return salida: cadena con todos los productos actuales de una ListaDeProductos.
      */
     public static String imprimeLista(ListaDeProductos lista){
@@ -26,6 +48,10 @@ public class ESListaDeProductos {
 
         for (Map.Entry<String, Double> entrada : productos.entrySet()) {
             salida = salida + entrada.getKey() + " - " + entrada.getValue() + "\r\n";
+        }
+        if(!salida.equals("")){
+            salida = salida + "-------------------------------\r\n";
+            salida = salida + "Total: " + obtenerTotal(lista);
         }
 
         return salida;

@@ -1,1 +1,4 @@
-principegusano:100
+Campesino Gusano: 50
+Duque Gusano:100
+Príncipe Gusano:200
+Rey Gusano:300

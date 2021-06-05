@@ -1,4 +1,0 @@
-CañaDeMadera:100
-CañaDeHierro:200
-CañaDePlata:300
-CañaDeOro:400

@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class BotonDeProducto extends JButton{
     private String nombre;
@@ -26,6 +25,24 @@ public class BotonDeProducto extends JButton{
     public BotonDeProducto(String nombre, double precio, String imagen){
         this(nombre, precio);
         this.imagen = new ImageIcon(imagen);
+    }
+
+    /**
+     * Método que aporta la funcionalidad al botón. Según el modo en el que se encuentre el programa, realizará
+     * la acción de añadido o borrado de un producto que reciba por parámetro.
+     * @param nombre: nombre del producto sobre el que se quiere realizar la operación.
+     * @param precio: precio del producto sobre el que se quiere realizar la operación.
+     * @param lista: lista en la que se quiere realizar la acción con el producto.
+     */
+    public void realizarOperacion(String nombre, double precio, ListaDeProductos lista){
+        boolean estaAnyadiendo = Programa.isModoAnyadir();
+        if(estaAnyadiendo){
+            ESListaDeProductos.insertaProducto(nombre, precio, lista);
+        }
+        else{
+            ESListaDeProductos.borraProducto(nombre, precio, lista);
+            ESPanelDeProductos.obtenerBotonesDeBorrado(Programa.getPanelActivo(), lista);
+        }
     }
 
     /**

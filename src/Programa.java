@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Programa extends JPanel{
 
-    PanelDeProductos panelActivo;
-    boolean modoAnyadir = true;
+    private static PanelDeProductos panelActivo;
+    private static boolean modoAnyadir = true;
 
     public Programa() {
         configurarPanel();
@@ -118,11 +118,18 @@ public class Programa extends JPanel{
             }
         });
 
-        //TODO: Añadir cosas al boton de cebos
         botonCebo.addActionListener( e -> {
             panelProductosCanyas.setVisible(false);
             panelProductosSedales.setVisible(false);
             panelProductosCebos.setVisible(true);
+            panelActivo = panelProductosCebos;
+            botonCanya.setEnabled(true);
+            botonSedal.setEnabled(true);
+            botonCebo.setEnabled(false);
+            ESPanelDeProductos.activarBotones(panelActivo.getBotones());
+            if(!modoAnyadir){
+                ESPanelDeProductos.obtenerBotonesDeBorrado(panelActivo, listaProductos);
+            }
         });
 
 
@@ -160,4 +167,13 @@ public class Programa extends JPanel{
 
         return constraints;
     }
+
+    public static PanelDeProductos getPanelActivo(){
+        return panelActivo;
+    }
+
+    public static boolean isModoAnyadir(){
+        return modoAnyadir;
+    }
+
 }

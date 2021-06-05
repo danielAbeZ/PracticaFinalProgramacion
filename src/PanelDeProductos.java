@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -49,7 +48,7 @@ public class PanelDeProductos extends JPanel{
                 String[] segmentos = s.split(":");
                 BotonDeProducto botonAux = new BotonDeProducto(segmentos[0], Double.parseDouble(segmentos[1]));
                 botonAux.addActionListener( e-> {
-                            ESListaDeProductos.insertaProducto(botonAux.getNombre(), botonAux.getPrecio(), lista);
+                            botonAux.realizarOperacion(botonAux.getNombre(), botonAux.getPrecio(), lista);
                         });
                 botones.add(botonAux);
             }
@@ -58,6 +57,10 @@ public class PanelDeProductos extends JPanel{
         }
     }
 
+    /**
+     * Método que devuelve los botones que tiene un PanelDeProductos.
+     * @return botones: ArrayList de BotonDeProducto contenidos en un PanelDeProductos.
+     */
     public ArrayList<BotonDeProducto> getBotones(){
         return botones;
     }

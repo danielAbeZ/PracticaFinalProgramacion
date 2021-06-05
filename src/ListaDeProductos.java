@@ -35,6 +35,25 @@ public class ListaDeProductos extends JPanel {
     }
 
     /**
+     * Método para borrar una unidad de un producto en una ListaDeProductos. Si es la única, se borra directamente el
+     * producto entero.
+     * @param nombre: nombre del producto que se desea eliminar.
+     * @param precioBase: precio base del producto que se desea eliminar.
+     */
+    public void borraProducto(String nombre, double precioBase){
+        if(productos.get(nombre) != null){
+            if(productos.get(nombre) > precioBase){
+                double precioProducto = productos.get(nombre);
+                precioProducto = precioProducto - precioBase;
+                productos.put(nombre, precioProducto);
+            }
+            else {
+                productos.remove(nombre);
+            }
+        }
+    }
+
+    /**
      * Método que actualiza el área de texto con los datos actuales de la lista de Productos.
      */
     public void actualizaLista(){
