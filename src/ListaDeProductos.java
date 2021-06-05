@@ -1,9 +1,13 @@
+import com.sun.source.tree.Tree;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class ListaDeProductos extends JPanel {
     private TreeMap<String, Double> productos;
+    private TreeMap<String, Double> productosConPrecioBase;
     private JTextArea areaDeTexto;
 
     /**
@@ -11,6 +15,7 @@ public class ListaDeProductos extends JPanel {
      */
     public ListaDeProductos(){
         productos = new TreeMap<String, Double>();
+        productosConPrecioBase = new TreeMap<String, Double>();
         areaDeTexto = new JTextArea("");
         areaDeTexto.setEditable(false);
         this.setLayout(new BorderLayout());
@@ -26,6 +31,7 @@ public class ListaDeProductos extends JPanel {
 
         if(productos.get(nombre) == null){
             productos.put(nombre, precio);
+            productosConPrecioBase.put(nombre, precio);
         }
         else{
             double precioProducto = productos.get(nombre);
@@ -49,8 +55,22 @@ public class ListaDeProductos extends JPanel {
             }
             else {
                 productos.remove(nombre);
+                productosConPrecioBase.remove(nombre);
             }
         }
+    }
+
+    public int obtenCantidadProducto(String nombre){
+        int numProductos = 1;
+        if(productos.get(nombre) != null){
+            double precioDeCantidad = productos.get(nombre);
+            double precioBase = productosConPrecioBase.get(nombre);
+            while(precioDeCantidad > precioBase){
+                numProductos++;
+                precioDeCantidad = precioDeCantidad - precioBase;
+            }
+        }
+        return numProductos;
     }
 
     /**

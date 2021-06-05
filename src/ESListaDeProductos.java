@@ -47,7 +47,7 @@ public class ESListaDeProductos {
         TreeMap<String, Double> productos = lista.getProductos();
 
         for (Map.Entry<String, Double> entrada : productos.entrySet()) {
-            salida = salida + entrada.getKey() + " - " + entrada.getValue() + "\r\n";
+            salida = salida + lista.obtenCantidadProducto(entrada.getKey()) + " x " + entrada.getKey() + " - " + entrada.getValue() + "\r\n";
         }
         if(!salida.equals("")){
             salida = salida + "-------------------------------\r\n";
@@ -65,13 +65,27 @@ public class ESListaDeProductos {
      */
     public static ArrayList<String> obtenerNombresEnLista(ListaDeProductos lista){
         String[] lineasDeLista = lista.getTexto().split("\r\n");
+        ArrayList<String> primeraParteLineas = new ArrayList<String>();
         ArrayList<String> nombresDeProductos = new ArrayList<String>();
+
 
         for (String linea: lineasDeLista) {
             String[] separados = linea.split(" - ");
-            String nombreProducto = separados[0];
-            nombresDeProductos.add(nombreProducto);
+            String datosProducto = separados[0];
+            primeraParteLineas.add(datosProducto);
         }
+
+        if(primeraParteLineas.size() > 1){
+            primeraParteLineas.remove((primeraParteLineas.size()-1));
+            primeraParteLineas.remove((primeraParteLineas.size()-1));
+
+            for (String linea: primeraParteLineas) {
+                String[] datosSeparados = linea.split(" ");
+                String nombreProducto = datosSeparados[2];
+                nombresDeProductos.add(nombreProducto);
+            }
+        }
+
 
         return nombresDeProductos;
     }
