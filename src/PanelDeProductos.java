@@ -22,8 +22,7 @@ public class PanelDeProductos extends JPanel{
      * Método que se encarga de configurar el panel.
      */
     private void configurarPanel(){
-        //TODO: Cambiar el /2 por si hubiesen menos productos AKA añade un if o algo.
-        GridLayout gridL = new GridLayout(botones.size()/2,0);
+        GridLayout gridL = new GridLayout(0,2);
         gridL.setHgap(10);
         gridL.setVgap(10);
         this.setLayout(gridL);

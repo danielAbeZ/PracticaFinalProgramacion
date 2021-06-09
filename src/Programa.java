@@ -16,18 +16,28 @@ public class Programa extends JPanel{
         //los elementos.
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        Insets insets = new Insets(5,5,5,5);
+        Insets insets = new Insets(5,15,5,5);
         Border borde = BorderFactory.createLineBorder(Color.lightGray);
 
         //Configuración del panel con el área de texto que muestra la lista actual de productos.
+        JLabel labelLista = new JLabel("Lista Actual");
+        constraints = creaConstraints(3,0,3,1, insets, GridBagConstraints.BOTH);
+        this.add(labelLista, constraints);
+
         ListaDeProductos listaProductos = new ListaDeProductos();
         listaProductos.setBorder(borde);
-        constraints = creaConstraints(2,0,2,3, insets, GridBagConstraints.BOTH);
+        constraints = creaConstraints(3,1,3,7, insets, GridBagConstraints.BOTH);
         this.add(listaProductos, constraints);
+
+
+        JLabel labelProductos = new JLabel("Lista de productos");
+        constraints = creaConstraints(0,0,3,1, insets, GridBagConstraints.BOTH);
+        this.add(labelProductos, constraints);
 
         //Configuración del panel con los productos de tipo "Canyas".
         PanelDeProductos panelProductosCanyas = new PanelDeProductos("canyas.txt", listaProductos);
-        constraints = creaConstraints(0,0,2,2, insets, GridBagConstraints.NONE);
+        insets = new Insets(5,5,5,5);
+        constraints = creaConstraints(0,1,3,5, insets, GridBagConstraints.BOTH);
         panelProductosCanyas.setBorder(borde);
         this.add(panelProductosCanyas,constraints);
 
@@ -46,7 +56,6 @@ public class Programa extends JPanel{
         this.add(panelProductosCebos,constraints);
 
         //Configuración del panel con los botones para añadir o quitar productos.
-        //TODO: Crear un método para crear y darle funcionalidad al panel.
         JPanel opcionProductos = new JPanel();
         JButton botonAnyadir = new JButton("Añadir");
         JButton botonQuitar = new JButton("Quitar");
@@ -69,11 +78,10 @@ public class Programa extends JPanel{
             modoAnyadir = false;
         });
 
-        constraints = creaConstraints(0,2,2,1, insets, GridBagConstraints.NONE);
+        constraints = creaConstraints(0,6,3,1, insets, GridBagConstraints.VERTICAL);
         this.add(opcionProductos, constraints);
 
         //Configuración del panel con los botones para cambiar el tipo de productos mostrados.
-        //TODO: Crear un método para crear y darle funcionalidad al panel.
         JPanel tiposDeProductos = new JPanel();
         JButton botonCanya = new JButton("Cañas");
         JButton botonSedal = new JButton("Sedales");
@@ -133,11 +141,10 @@ public class Programa extends JPanel{
         });
 
 
-        constraints = creaConstraints(0,3,2,1, insets, GridBagConstraints.NONE);
+        constraints = creaConstraints(0,8,3,1, insets, GridBagConstraints.VERTICAL);
         this.add(tiposDeProductos, constraints);
 
         //Configuración del panel con las opciones adicicionales.
-        //TODO: Crear un método para crear y darle funcionalidad al panel.
         JPanel opcionesAdicionales = new JPanel();
         JButton botonMuestra = new JButton("Muestra ticket");
         JButton botonImprime = new JButton("Imprime ticket");
@@ -145,7 +152,15 @@ public class Programa extends JPanel{
         opcionesAdicionales.add(botonImprime);
         opcionesAdicionales.setBorder(borde);
 
-        constraints = creaConstraints(2,3,2,1, insets, GridBagConstraints.NONE);
+        botonMuestra.addActionListener( e -> {
+            Programa.muestraTicket(listaProductos);
+        });
+
+        botonImprime.addActionListener( e -> {
+            Programa.imprimeTicket(listaProductos);
+        });
+
+        constraints = creaConstraints(3,8,3,1, insets, GridBagConstraints.BOTH);
         this.add(opcionesAdicionales, constraints);
     }
 
@@ -174,6 +189,20 @@ public class Programa extends JPanel{
 
     public static boolean isModoAnyadir(){
         return modoAnyadir;
+    }
+
+    public static void imprimeTicket(ListaDeProductos lista){
+        if(lista.getTexto() != null && lista.getTexto() != ""){
+            try {
+                lista.getAreaDeTexto().print(null, null, true, null, null, true);
+            } catch (java.awt.print.PrinterException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public static void muestraTicket(ListaDeProductos lista){
+        JOptionPane.showMessageDialog(null, lista.getAreaDeTexto().getText());
     }
 
 }

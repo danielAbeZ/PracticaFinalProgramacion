@@ -9,6 +9,7 @@ public class ListaDeProductos extends JPanel {
     private TreeMap<String, Double> productos;
     private TreeMap<String, Double> productosConPrecioBase;
     private JTextArea areaDeTexto;
+    private JScrollPane areaDesplazable;
 
     /**
      * Método constructor de la clase. Inicializa las variables de la misma.
@@ -19,7 +20,8 @@ public class ListaDeProductos extends JPanel {
         areaDeTexto = new JTextArea("");
         areaDeTexto.setEditable(false);
         this.setLayout(new BorderLayout());
-        this.add(areaDeTexto);
+        areaDesplazable = new JScrollPane(areaDeTexto);
+        this.add(areaDesplazable);
     }
 
     /**
@@ -60,6 +62,12 @@ public class ListaDeProductos extends JPanel {
         }
     }
 
+    /**
+     * Método que obtiene el número de veces que un producto se encuentra en una ListaDeProductos.
+     * @param nombre: nombre del producto en cuestión.
+     * @return numProductos: número de veces que el producto con el nombre pasado por parámetro se
+     * encuentra en la ListaDeProductos.
+     */
     public int obtenCantidadProducto(String nombre){
         int numProductos = 1;
         if(productos.get(nombre) != null){
@@ -86,6 +94,14 @@ public class ListaDeProductos extends JPanel {
      */
     public TreeMap<String, Double> getProductos(){
         return productos;
+    }
+
+    /**
+     * Método que devuelve el JTextArea de una ListaDeProductos.
+     * @return areaDeTexto: JTextArea de la lista.
+     */
+    public JTextArea getAreaDeTexto(){
+        return areaDeTexto;
     }
 
     /**

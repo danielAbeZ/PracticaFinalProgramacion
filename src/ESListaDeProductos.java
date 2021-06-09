@@ -15,10 +15,16 @@ public class ESListaDeProductos {
         lista.actualizaLista();
     }
 
+    /**
+     * Método que permite borrar un producto ya existente en una ListaDeProductos. Una vez borrado, actualiza
+     * la información mostrada por pantalla al usuario.
+     * @param nombre: nombre del producto a borrar.
+     * @param precio: precio del producto a borrar.
+     * @param lista: lista en la que se desea borrar el producto.
+     */
     public static void borraProducto(String nombre, double precio, ListaDeProductos lista){
         lista.borraProducto(nombre, precio);
         lista.actualizaLista();
-
     }
 
     /**
