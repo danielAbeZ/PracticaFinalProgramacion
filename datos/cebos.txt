@@ -1,4 +1,6 @@
-Campesino Gusano: 50
-Duque Gusano:100
-Príncipe Gusano:200
-Rey Gusano:300
+LombrizDeMar:1:img/cebos/lombrizMar.jpg
+LombrizNorte:2:img/cebos/lombrizNorte.jpg
+GusanoCoreano:3:img/cebos/gusanoCoreano.jpg
+GusanoArenicola:4:img/cebos/gusanoArenicola.jpg
+Caballa:5:img/cebos/caballa.jpg
+Cucharilla:6:img/cebos/cucharilla.jpg

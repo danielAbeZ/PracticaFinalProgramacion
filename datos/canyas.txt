@@ -1,8 +1,5 @@
-CañadePlástico:50
-CañaDeMadera:100
-CañadeCobre:200
-CañaDeHierro:300
-CañaDePlata:400
-CañaDeOro:500
-CañaDeCobalto:600
-CañaDeMitrilo:700
+CanyaUltraligera:50:img/canyas/canyaUltraligera.jpg
+CanyaLigera:100:img/canyas/canyaLigera.jpg
+CanyaMediana:200:img/canyas/canyaMediana.jpg
+CanyaPesada:300:img/canyas/canyaPesada.jpg
+CanyaUltrapesada:400:img/canyas/canyaUltrapesada.jpg

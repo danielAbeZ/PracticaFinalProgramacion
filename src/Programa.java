@@ -176,21 +176,26 @@ public class Programa extends JPanel{
         return constraints;
     }
 
-    public GridBagConstraints creaConstraints(int posx, int posy, int ancho, int alto, Insets insets, int fill, int anchor){
-        GridBagConstraints constraints = creaConstraints(posx,posy,ancho,alto,insets,fill);
-        constraints.anchor = anchor;
-
-        return constraints;
-    }
-
+    /**
+     * Método que devuelve el panelActivo del Programa.
+     * @return panelActivo: PanelDeProductos actualmente en uso del Programa.
+     */
     public static PanelDeProductos getPanelActivo(){
         return panelActivo;
     }
 
+    /**
+     * Método que devuelve el booleano para saber si se están añadiendo o borrando productos.
+     * @return modoAnyadir: booleano que informa de si se está quitando o poniendo productos.
+     */
     public static boolean isModoAnyadir(){
         return modoAnyadir;
     }
 
+    /**
+     * Método que permite la función de imprimir tickets.
+     * @param lista: listaDeProductos con los datos para imprimir.
+     */
     public static void imprimeTicket(ListaDeProductos lista){
         if(lista.getTexto() != null && lista.getTexto() != ""){
             try {
@@ -201,6 +206,10 @@ public class Programa extends JPanel{
         }
     }
 
+    /**
+     * Método que muestra un ticket por pantalla.
+     * @param lista: ListaDeProductos con los datos que se quieren mostrar.
+     */
     public static void muestraTicket(ListaDeProductos lista){
         JOptionPane.showMessageDialog(null, lista.getAreaDeTexto().getText());
     }

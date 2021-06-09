@@ -1,3 +1,5 @@
-SedalMadera:10
-SedalHierro:20
-SedalPlata:30
+Trenzado:31.50:img/sedales/trenzado.jpg
+Fluorocarbono:21.50:img/sedales/fluorocarbono.jpg
+Monofilamento:15.50:img/sedales/monofilamento.jpg
+ColaDeRata:13.50:img/sedales/colaDeRata.jpg
+PescaAMosca:20.50:img/sedales/pescaAMosca.jpg

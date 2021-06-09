@@ -45,7 +45,8 @@ public class PanelDeProductos extends JPanel{
             //Para cada una de las líneas, que será un producto, creamos un botón.
             for (String s: productos) {
                 String[] segmentos = s.split(":");
-                BotonDeProducto botonAux = new BotonDeProducto(segmentos[0], Double.parseDouble(segmentos[1]));
+                BotonDeProducto botonAux = new BotonDeProducto(segmentos[0], Double.parseDouble(segmentos[1]), segmentos[2]);
+                botonAux.setIcon(botonAux.getImagen());
                 botonAux.addActionListener( e-> {
                             botonAux.realizarOperacion(botonAux.getNombre(), botonAux.getPrecio(), lista);
                         });
